@@ -1,7 +1,17 @@
 import 'package:equatable/equatable.dart';
 
-class HomeEvent extends Equatable {
+abstract class HomeEvent extends Equatable {
+  const HomeEvent();
+
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
+}
+
+class TabSelected extends HomeEvent {
+  final int tabIndex;
+
+  const TabSelected({required this.tabIndex});
+
+  @override
+  List<Object?> get props => [...super.props, tabIndex];
 }
