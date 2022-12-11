@@ -6,12 +6,11 @@ part of 'launch_link_patch.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LaunchLinkPatch _$LaunchLinkPatchFromJson(Map<String, dynamic> json) {
-  return LaunchLinkPatch(
-    json['small'] as String?,
-    json['large'] as String?,
-  );
-}
+LaunchLinkPatch _$LaunchLinkPatchFromJson(Map<String, dynamic> json) =>
+    LaunchLinkPatch(
+      json['small'] as String?,
+      json['large'] as String?,
+    );
 
 Map<String, dynamic> _$LaunchLinkPatchToJson(LaunchLinkPatch instance) =>
     <String, dynamic>{

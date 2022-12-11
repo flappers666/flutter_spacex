@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spacex/app.dart';
+import 'package:flutter_spacex/core/launches/launches_api.dart';
+import 'package:flutter_spacex/core/launches/launches_service.dart';
 
 void main() {
   BaseOptions dioBaseOptions = BaseOptions(
@@ -11,7 +13,10 @@ void main() {
         status != null && status >= 200 && status <= 299,
   );
 
-  final Dio _dio = new Dio(dioBaseOptions);
+  final Dio dio = Dio(dioBaseOptions);
 
-  runApp(const App());
+  final LaunchesApi launchesApi = LaunchesApi(dio);
+  final LaunchesService launchesService = LaunchesService(launchesApi);
+
+  runApp(App(launchesService: launchesService));
 }

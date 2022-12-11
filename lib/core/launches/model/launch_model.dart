@@ -1,4 +1,4 @@
-import 'package:flutter_spacex/core/models/launch_links.dart';
+import 'package:flutter_spacex/core/launches/model/launch_links.dart';
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -21,9 +21,11 @@ class LaunchModel {
     return _$LaunchModelFromJson(json);
   }
 
+  @JsonKey(ignore: true)
   String get formattedDate => DateFormat('dd/MM/yy')
       .format(DateTime.fromMillisecondsSinceEpoch(dateUnix * 1000));
 
+  @JsonKey(ignore: true)
   NumberFormat formatter = NumberFormat("00");
   String get dayFromDate {
     var day = double.parse(DateFormat('d')
@@ -31,6 +33,7 @@ class LaunchModel {
     return formatter.format(day);
   }
 
+  @JsonKey(ignore: true)
   String get monthFromDate => DateFormat('MMM')
       .format(DateTime.fromMillisecondsSinceEpoch(dateUnix * 1000));
 }

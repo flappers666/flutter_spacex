@@ -1,6 +1,6 @@
-import 'package:flutter_spacex/core/models/launch_link_flickr.dart';
-import 'package:flutter_spacex/core/models/launch_link_patch.dart';
-import 'package:flutter_spacex/core/models/launch_link_reddit.dart';
+import 'package:flutter_spacex/core/launches/model/launch_link_flickr.dart';
+import 'package:flutter_spacex/core/launches/model/launch_link_patch.dart';
+import 'package:flutter_spacex/core/launches/model/launch_link_reddit.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'launch_links.g.dart';

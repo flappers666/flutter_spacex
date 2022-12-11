@@ -7,6 +7,8 @@ import 'package:flutter_spacex/views/home/bloc/home_bloc.dart';
 import 'package:flutter_spacex/views/home/bloc/home_event.dart';
 import 'package:flutter_spacex/views/home/bloc/home_state.dart';
 
+import '../launches/launches.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -14,11 +16,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     const navBarItems = [
       BottomNavigationBarItem(
-        icon: Icon(Icons.airline_seat_recline_extra),
+        icon: Icon(Icons.rocket_launch),
         label: 'Launches',
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.local_fire_department),
+        icon: Icon(Icons.rocket),
         label: 'Rockets',
       ),
       BottomNavigationBarItem(
@@ -26,6 +28,12 @@ class Home extends StatelessWidget {
         label: 'Info',
       ),
     ];
+
+    var items = [];
+    for (int i = 0; i < 20; i++) {
+      items.add('hello');
+    }
+
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(
@@ -48,6 +56,13 @@ class Home extends StatelessWidget {
           backgroundColor: const Color(UiColors.palette1),
           onTap: (int tabIndex) =>
               context.read<HomeBloc>().add(TabSelected(tabIndex: tabIndex)),
+        ),
+        body: IndexedStack(
+          children: [
+            Launches(),
+            Container(),
+            Container(),
+          ],
         ),
       );
     });

@@ -5,10 +5,10 @@ import 'package:flutter_spacex/core/api/api_request.dart';
 import 'package:flutter_spacex/core/api/api_response.dart';
 import 'package:flutter_spacex/core/api/constants.dart';
 import 'package:flutter_spacex/core/api/utils.dart';
-import 'package:flutter_spacex/core/models/launch_model.dart';
+import 'package:flutter_spacex/core/launches/model/launch_model.dart';
 
-class LaunchApi extends ApiClient {
-  LaunchApi(Dio httpClient) : super(httpClient);
+class LaunchesApi extends ApiClient {
+  LaunchesApi(Dio httpClient) : super(httpClient);
 
   Future<ApiResponse> getUpcomingLaunches() async {
     try {

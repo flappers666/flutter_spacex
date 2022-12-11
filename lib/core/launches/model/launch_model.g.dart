@@ -6,17 +6,15 @@ part of 'launch_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LaunchModel _$LaunchModelFromJson(Map<String, dynamic> json) {
-  return LaunchModel(
-    LaunchLinks.fromJson(json['links'] as Map<String, dynamic>),
-    json['id'] as String,
-    json['flight_number'] as int,
-    json['name'] as String,
-    json['date_unix'] as int,
-    json['upcoming'] as bool,
-    json['details'] as String?,
-  );
-}
+LaunchModel _$LaunchModelFromJson(Map<String, dynamic> json) => LaunchModel(
+      LaunchLinks.fromJson(json['links'] as Map<String, dynamic>),
+      json['id'] as String,
+      json['flight_number'] as int,
+      json['name'] as String,
+      json['date_unix'] as int,
+      json['upcoming'] as bool,
+      json['details'] as String?,
+    );
 
 Map<String, dynamic> _$LaunchModelToJson(LaunchModel instance) =>
     <String, dynamic>{
