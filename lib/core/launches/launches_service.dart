@@ -17,4 +17,15 @@ class LaunchesService {
     response.errorMessage = apiResponse.apiError?.errorMessage;
     return response;
   }
+
+  Future<ValueOrFail<LaunchModel?>> getLaunchDetail(String launchId) async {
+    ApiResponse r = await _launchApi.getLaunchDetail(launchId);
+    ValueOrFail<LaunchModel?> response =
+        ValueOrFail(value: null, errorMessage: null);
+    if (r.success) {
+      response.value = r.value;
+    }
+    response.errorMessage = r.apiError?.errorMessage;
+    return response;
+  }
 }

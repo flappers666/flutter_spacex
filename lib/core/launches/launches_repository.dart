@@ -9,4 +9,8 @@ class LaunchesRepository {
   Future<ValueOrFail<List<LaunchModel>?>> getUpcomingLaunches() async {
     return await launchesService.getUpcomingLaunches();
   }
+
+  Future<ValueOrFail<LaunchModel?>> getLaunchDetail(String launchId) async {
+    return await launchesService.getLaunchDetail(launchId);
+  }
 }

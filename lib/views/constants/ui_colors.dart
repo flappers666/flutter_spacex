@@ -1,7 +1,7 @@
 class UiColors {
   const UiColors._();
 
-  static const background = 0x000000;
+  static const background = 0xFF0000;
 
   //Palette: https://coolors.co/000e14-00111a-00141f-001824-001b29-002233-00293d-003047-003652-003d5c
   static const palette1 = 0xFF000E14;

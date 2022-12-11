@@ -4,7 +4,6 @@ import 'package:flutter_spacex/core/launches/launches_repository.dart';
 import 'package:flutter_spacex/core/launches/launches_service.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/core/router.dart';
-import 'package:flutter_spacex/views/home/bloc/home_bloc.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_bloc.dart';
 
 class App extends StatelessWidget {
@@ -16,9 +15,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => HomeBloc(),
-        ),
         BlocProvider(
           create: (context) => LaunchesBloc(
               launchesRepository:
