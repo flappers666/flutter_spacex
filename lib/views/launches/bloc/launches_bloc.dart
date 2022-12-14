@@ -13,6 +13,7 @@ class LaunchesBloc extends Bloc<LaunchesEvent, LaunchesState> {
   _getLaunches(event, emit) async {
     var valueOrFail = await launchesRepository.getUpcomingLaunches();
     if (valueOrFail.hasValue) {
+      valueOrFail.value!.sort((a, b) => b.dateUnix.compareTo(a.dateUnix));
       emit(state.copyWith(
           launches: valueOrFail.value, viewState: LaunchViewState.loaded));
     } else {
