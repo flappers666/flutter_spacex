@@ -13,18 +13,24 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider(
-          create: (context) => LaunchesBloc(
-              launchesRepository:
-                  LaunchesRepository(launchesService: launchesService)),
-        ),
+        RepositoryProvider<LaunchesRepository>(
+            create: (context) =>
+                LaunchesRepository(launchesService: launchesService)),
       ],
-      child: MaterialApp.router(
-        theme: ThemeData(
-            scaffoldBackgroundColor: const Color(UiColors.background)),
-        routerConfig: router,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => LaunchesBloc(
+                launchesRepository: context.read<LaunchesRepository>()),
+          ),
+        ],
+        child: MaterialApp.router(
+          theme: ThemeData(
+              scaffoldBackgroundColor: const Color(UiColors.background)),
+          routerConfig: router,
+        ),
       ),
     );
   }
