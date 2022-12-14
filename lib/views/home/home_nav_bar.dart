@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spacex/views/constants/app_routes.dart';
+import 'package:flutter_spacex/views/constants/text_styles.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/constants/ui_fonts.dart';
 import 'package:go_router/go_router.dart';
@@ -37,16 +38,26 @@ class HomeNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-          destinations: [
-            const NavigationDestination(
-                icon: Icon(Icons.rocket_launch), label: 'Launches'),
-            const NavigationDestination(
-                icon: Icon(Icons.rocket), label: 'Rockets'),
-            const NavigationDestination(icon: Icon(Icons.info), label: 'Info'),
-          ],
-          selectedIndex: _selectedIndex(context),
-          onDestinationSelected: (int index) => _switchTab(context, index)),
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          backgroundColor: const Color(UiColors.background),
+          labelTextStyle: MaterialStateProperty.all(TextStyles.body()),
+          iconTheme: MaterialStateProperty.all(
+            const IconThemeData(
+              color: Color(UiColors.contrastingLight),
+            ),
+          ),
+        ),
+        child: NavigationBar(
+            destinations: const [
+              NavigationDestination(
+                  icon: Icon(Icons.rocket_launch), label: 'Launches'),
+              NavigationDestination(icon: Icon(Icons.rocket), label: 'Rockets'),
+              NavigationDestination(icon: Icon(Icons.info), label: 'Info'),
+            ],
+            selectedIndex: _selectedIndex(context),
+            onDestinationSelected: (int index) => _switchTab(context, index)),
+      ),
       body: child,
     );
   }

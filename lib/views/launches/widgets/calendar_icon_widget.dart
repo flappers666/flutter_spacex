@@ -18,7 +18,7 @@ class CalenderIconWidget extends StatelessWidget {
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(5), topRight: Radius.circular(5)),
-            color: Color(0xfff003d5c),
+            color: Colors.black,
           ),
           child: Center(
               child: Text(month,
@@ -31,7 +31,7 @@ class CalenderIconWidget extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(5),
                 bottomRight: Radius.circular(5)),
-            color: Colors.white,
+            color: Color(UiColors.contrastingLight),
           ),
           child: Center(
             child: Text(day,

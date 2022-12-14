@@ -24,7 +24,7 @@ class Launches extends StatelessWidget {
       return Scaffold(
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
-            backgroundColor: const Color(UiColors.palette5),
+            backgroundColor: const Color(UiColors.background),
             title: Text('Launches', style: TextStyles.heading()),
           ),
           body: ListView.builder(

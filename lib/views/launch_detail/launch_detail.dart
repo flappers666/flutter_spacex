@@ -18,7 +18,7 @@ class LaunchDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        backgroundColor: const Color(UiColors.palette5),
+        backgroundColor: const Color(UiColors.background),
         leading: IconButton(
             icon: const Icon(Icons.chevron_left),
             iconSize: 30,
