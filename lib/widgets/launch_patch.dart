@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spacex/core/launches/model/launch_link_patch.dart';
 
@@ -7,16 +8,19 @@ class LaunchPatch extends StatelessWidget {
 
   const LaunchPatch({super.key, required this.height, required this.patch});
 
+  Widget get defaultImage => const Image(
+      fit: BoxFit.contain,
+      image: AssetImage('assets/images/patch_default.png'));
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        constraints: BoxConstraints(maxHeight: height),
-        child: Image(
-          fit: BoxFit.contain,
-          image: patch?.large == null
-              ? const AssetImage('assets/images/patch_default.png')
-                  as ImageProvider
-              : NetworkImage(patch!.large!),
-        ));
+      constraints: BoxConstraints(maxHeight: height),
+      child: patch?.large == null
+          ? defaultImage
+          : CachedNetworkImage(
+              imageUrl: patch!.large!,
+              placeholder: (context, url) => defaultImage),
+    );
   }
 }
