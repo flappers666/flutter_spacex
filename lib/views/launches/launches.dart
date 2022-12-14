@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spacex/core/launches/model/launch_model.dart';
 import 'package:flutter_spacex/views/constants/app_routes.dart';
+import 'package:flutter_spacex/views/constants/text_styles.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/constants/ui_fonts.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_bloc.dart';
@@ -24,14 +25,7 @@ class Launches extends StatelessWidget {
           appBar: AppBar(
             systemOverlayStyle: SystemUiOverlayStyle.light,
             backgroundColor: const Color(UiColors.palette5),
-            title: const Text(
-              'Launches',
-              style: TextStyle(
-                fontFamily: UiFonts.headerFont,
-                fontWeight: FontWeight.bold,
-                color: Color(UiColors.contrastingLight),
-              ),
-            ),
+            title: Text('Launches', style: TextStyles.heading()),
           ),
           body: ListView.builder(
               scrollDirection: Axis.vertical,
@@ -49,9 +43,7 @@ class Launches extends StatelessWidget {
                           extra: launch);
                     }
                   },
-                  child: LaunchTileWidget(
-                      launch: launch,
-                      patchUrl: launch?.links.patch.small ?? ''),
+                  child: LaunchTileWidget(launch: launch),
                 );
               }));
     });

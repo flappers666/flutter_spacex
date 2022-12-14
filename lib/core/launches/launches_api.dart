@@ -15,7 +15,7 @@ class LaunchesApi extends ApiClient {
       var request = ApiRequest(
           host: ApiConstants.spacexUrl,
           method: HttpMethod.get,
-          path: '${ApiConstants.apiVersion}/launches/upcoming');
+          path: '${ApiConstants.apiVersion}/launches');
       var response = await makeApiRequest(request);
 
       var launches = Utils.jsonArrayToList<LaunchModel>(

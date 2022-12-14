@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spacex/views/constants/text_styles.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/constants/ui_fonts.dart';
 
@@ -9,7 +10,8 @@ class CalenderIconWidget extends StatelessWidget {
   const CalenderIconWidget({super.key, required this.day, required this.month});
 
   @override
-  Widget build(BuildContext context) => Column(children: [
+  Widget build(BuildContext context) =>
+      Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(
           height: 15,
           width: 40,
@@ -19,15 +21,8 @@ class CalenderIconWidget extends StatelessWidget {
             color: Color(0xfff003d5c),
           ),
           child: Center(
-              child: Text(
-            month,
-            style: const TextStyle(
-              fontFamily: UiFonts.textFont,
-              fontWeight: FontWeight.bold,
-              fontSize: 10,
-              color: Color(UiColors.contrastingLight),
-            ),
-          )),
+              child: Text(month,
+                  style: TextStyles.body(fontWeight: FontWeight.bold))),
         ),
         Container(
           height: 25,
@@ -39,15 +34,11 @@ class CalenderIconWidget extends StatelessWidget {
             color: Colors.white,
           ),
           child: Center(
-            child: Text(
-              day,
-              style: const TextStyle(
-                fontFamily: UiFonts.textFont,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Color(UiColors.contrastingDark),
-              ),
-            ),
+            child: Text(day,
+                style: TextStyles.body(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(UiColors.contrastingDark))),
           ),
         ),
       ]);

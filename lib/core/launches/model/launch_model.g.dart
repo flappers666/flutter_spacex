@@ -12,8 +12,9 @@ LaunchModel _$LaunchModelFromJson(Map<String, dynamic> json) => LaunchModel(
       json['flight_number'] as int,
       json['name'] as String,
       json['date_unix'] as int,
-      json['upcoming'] as bool,
+      json['upcoming'] as bool? ?? false,
       json['details'] as String?,
+      json['success'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$LaunchModelToJson(LaunchModel instance) =>
@@ -25,4 +26,5 @@ Map<String, dynamic> _$LaunchModelToJson(LaunchModel instance) =>
       'date_unix': instance.dateUnix,
       'upcoming': instance.upcoming,
       'details': instance.details,
+      'success': instance.success,
     };
