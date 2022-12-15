@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spacex/core/launches/model/launch_model.dart';
+import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 import 'package:flutter_spacex/views/constants/text_styles.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
-import 'package:flutter_spacex/views/constants/ui_fonts.dart';
 import 'package:flutter_spacex/views/launch_detail/widgets/launch_detail_icons.dart';
 import 'package:flutter_spacex/widgets/countdown_clock_widget.dart';
 import 'package:flutter_spacex/widgets/launch_patch.dart';

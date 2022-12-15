@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spacex/core/launches/model/launch_link_patch.dart';
+import 'package:flutter_spacex/core/models/launches/launch_link_patch.dart';
 
 class LaunchPatch extends StatelessWidget {
   final double height;

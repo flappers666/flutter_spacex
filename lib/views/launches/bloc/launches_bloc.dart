@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter_spacex/core/launches/launches_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spacex/core/repositories/launches_repository.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_event.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_state.dart';
 

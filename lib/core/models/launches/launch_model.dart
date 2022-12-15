@@ -1,4 +1,4 @@
-import 'package:flutter_spacex/core/launches/model/launch_links.dart';
+import 'package:flutter_spacex/core/models/launches/launch_links.dart';
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 

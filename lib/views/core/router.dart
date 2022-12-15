@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spacex/core/launches/model/launch_model.dart';
+import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 import 'package:flutter_spacex/views/constants/app_routes.dart';
 import 'package:flutter_spacex/views/home/home_nav_bar.dart';
 import 'package:flutter_spacex/views/launch_detail/launch_detail.dart';

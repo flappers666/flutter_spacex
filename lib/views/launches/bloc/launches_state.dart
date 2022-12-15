@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_spacex/core/launches/model/launch_model.dart';
+import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 
 enum LaunchViewState { notLoaded, loading, loaded, failed }
 

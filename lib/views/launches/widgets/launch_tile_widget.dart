@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spacex/core/launches/model/launch_model.dart';
+import 'package:flutter_spacex/core/models/launches/launch_model.dart';
+
 import 'package:flutter_spacex/views/constants/text_styles.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/widgets/launch_patch.dart';
@@ -42,10 +43,13 @@ class LaunchTileWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(width: 20),
-                  LaunchPatch(
-                    height: _height - 20,
-                    patch: launch?.links.patch,
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    width: 60,
+                    child: LaunchPatch(
+                      height: _height - 20,
+                      patch: launch?.links.patch,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(

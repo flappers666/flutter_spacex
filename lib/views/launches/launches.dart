@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spacex/core/launches/model/launch_model.dart';
+import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 import 'package:flutter_spacex/views/constants/app_routes.dart';
 import 'package:flutter_spacex/views/constants/text_styles.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
-import 'package:flutter_spacex/views/constants/ui_fonts.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_bloc.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_event.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_state.dart';

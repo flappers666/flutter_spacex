@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spacex/core/launches/launches_api.dart';
-import 'package:flutter_spacex/core/launches/launches_repository.dart';
-import 'package:flutter_spacex/core/launches/launches_service.dart';
+import 'package:flutter_spacex/core/api/launches_api.dart';
+import 'package:flutter_spacex/core/repositories/launches_repository.dart';
+import 'package:flutter_spacex/core/services/launches_service.dart';
 import 'package:flutter_spacex/core/utilities/logger.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/core/router.dart';

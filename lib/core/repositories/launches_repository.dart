@@ -1,6 +1,6 @@
 import 'package:flutter_spacex/core/dto/value_or_fail.dart';
-import 'package:flutter_spacex/core/launches/launches_service.dart';
-import 'package:flutter_spacex/core/launches/model/launch_model.dart';
+import 'package:flutter_spacex/core/models/launches/launch_model.dart';
+import 'package:flutter_spacex/core/services/launches_service.dart';
 
 class LaunchesRepository {
   final LaunchesService launchesService;
