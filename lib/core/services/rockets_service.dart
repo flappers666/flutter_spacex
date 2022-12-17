@@ -1,0 +1,20 @@
+import 'package:flutter_spacex/core/api/api_response.dart';
+import 'package:flutter_spacex/core/api/rockets_api.dart';
+import 'package:flutter_spacex/core/dto/value_or_fail.dart';
+import 'package:flutter_spacex/core/models/rockets/rocket_model.dart';
+
+class RocketsService {
+  final RocketsApi rocketsApi;
+  RocketsService(this.rocketsApi);
+
+  Future<ValueOrFail<List<RocketModel>?>> getRockets() async {
+    ApiResponse apiResponse = await rocketsApi.getRockets();
+    ValueOrFail<List<RocketModel>?> response =
+        ValueOrFail(value: null, errorMessage: null);
+    if (apiResponse.success) {
+      response.value = apiResponse.value;
+    }
+    response.errorMessage = apiResponse.apiError?.errorMessage;
+    return response;
+  }
+}

@@ -19,18 +19,23 @@ class HomeNavBar extends StatelessWidget {
     int index = 0;
     if (location.startsWith(AppRoutes.launches)) {
       index = 0;
+    } else if (location.startsWith(AppRoutes.rockets)) {
+      index = 1;
     }
     return index;
   }
 
-  void _switchTab(context, index) {
+  void _switchTab(BuildContext context, int index) {
     if (index == _selectedIndex(context)) {
       return;
     }
 
     switch (index) {
       case 0:
-        context.go(AppRoutes.launchDetail);
+        context.go(AppRoutes.launches);
+        break;
+      case 1:
+        context.go(AppRoutes.rockets);
         break;
     }
   }

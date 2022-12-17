@@ -1,6 +1,8 @@
 import 'package:flutter_spacex/core/models/rockets/rocket_diameter.dart';
+import 'package:flutter_spacex/core/models/rockets/rocket_engine.dart';
 import 'package:flutter_spacex/core/models/rockets/rocket_height.dart';
 import 'package:flutter_spacex/core/models/rockets/rocket_mass.dart';
+import 'package:flutter_spacex/core/models/rockets/rocket_payload.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'rocket_model.g.dart';
@@ -27,6 +29,8 @@ class RocketModel {
   RocketDiameter diameter;
   RocketMass mass;
   List<String> flickrImages;
+  List<RocketPayload> payloadWeights;
+  RocketEngine engines;
 
   RocketModel(
       this.name,
@@ -45,7 +49,9 @@ class RocketModel {
       this.height,
       this.diameter,
       this.mass,
-      this.flickrImages);
+      this.flickrImages,
+      this.payloadWeights,
+      this.engines);
 
   static RocketModel fromJson(Map<String, dynamic> json) {
     return _$RocketModelFromJson(json);

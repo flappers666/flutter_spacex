@@ -5,6 +5,7 @@ import 'package:flutter_spacex/views/constants/text_styles.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/launch_detail/widgets/launch_detail_icons.dart';
 import 'package:flutter_spacex/widgets/countdown_clock_widget.dart';
+import 'package:flutter_spacex/widgets/default_app_bar.dart';
 import 'package:flutter_spacex/widgets/launch_patch.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,18 +16,8 @@ class LaunchDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        backgroundColor: const Color(UiColors.background),
-        leading: IconButton(
-            icon: const Icon(Icons.chevron_left),
-            iconSize: 30,
-            onPressed: () => GoRouter.of(context).pop()),
-        title: Text(
-          launchDetail.name,
-          style: TextStyles.heading(),
-        ),
-      ),
+      appBar: DefaultAppBar(
+          title: launchDetail.name, backFunc: () => GoRouter.of(context).pop()),
       body: Container(
         decoration: const BoxDecoration(
           gradient: RadialGradient(

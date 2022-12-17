@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 import 'package:flutter_spacex/views/constants/app_routes.dart';
-import 'package:flutter_spacex/views/constants/text_styles.dart';
-import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_bloc.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_event.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_state.dart';
 import 'package:flutter_spacex/views/launches/widgets/launch_tile_widget.dart';
+import 'package:flutter_spacex/widgets/default_app_bar.dart';
 import 'package:go_router/go_router.dart';
 
 class Launches extends StatelessWidget {
@@ -21,11 +19,7 @@ class Launches extends StatelessWidget {
         context.read<LaunchesBloc>().add(GetLaunches());
       }
       return Scaffold(
-          appBar: AppBar(
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-            backgroundColor: const Color(UiColors.background),
-            title: Text('Launches', style: TextStyles.heading()),
-          ),
+          appBar: const DefaultAppBar(title: 'Launches'),
           body: ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: state.launches.isEmpty

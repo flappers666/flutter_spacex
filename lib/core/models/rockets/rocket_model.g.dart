@@ -24,6 +24,10 @@ RocketModel _$RocketModelFromJson(Map<String, dynamic> json) => RocketModel(
       RocketDiameter.fromJson(json['diameter'] as Map<String, dynamic>),
       RocketMass.fromJson(json['mass'] as Map<String, dynamic>),
       (json['flickr_images'] as List<dynamic>).map((e) => e as String).toList(),
+      (json['payload_weights'] as List<dynamic>)
+          .map((e) => RocketPayload.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      RocketEngine.fromJson(json['engines'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$RocketModelToJson(RocketModel instance) =>
@@ -45,4 +49,7 @@ Map<String, dynamic> _$RocketModelToJson(RocketModel instance) =>
       'diameter': instance.diameter.toJson(),
       'mass': instance.mass.toJson(),
       'flickr_images': instance.flickrImages,
+      'payload_weights':
+          instance.payloadWeights.map((e) => e.toJson()).toList(),
+      'engines': instance.engines.toJson(),
     };

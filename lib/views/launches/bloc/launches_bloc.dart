@@ -10,7 +10,7 @@ class LaunchesBloc extends Bloc<LaunchesEvent, LaunchesState> {
     on<GetLaunches>((event, emit) async => await _getLaunches(event, emit));
   }
 
-  _getLaunches(event, emit) async {
+  Future<void> _getLaunches(event, emit) async {
     var valueOrFail = await launchesRepository.getUpcomingLaunches();
     if (valueOrFail.hasValue) {
       valueOrFail.value!.sort((a, b) => b.dateUnix.compareTo(a.dateUnix));
