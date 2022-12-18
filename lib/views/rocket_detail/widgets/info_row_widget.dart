@@ -6,10 +6,12 @@ enum InfoMarkerPosition { left, right }
 class InfoRowWidget extends StatefulWidget {
   final InfoMarkerPosition position;
   final double columnWidth;
+  final bool isSelected;
   final void Function()? onTap;
   const InfoRowWidget(
       {required this.position,
       required this.columnWidth,
+      required this.isSelected,
       required this.onTap,
       super.key});
 
@@ -34,7 +36,8 @@ class _InfoRowWidgetState extends State<InfoRowWidget> {
               child: Center(
                   child: GestureDetector(
                       onTap: widget.onTap,
-                      child: _HotSpot(columnWidth, InfoMarkerPosition.right))),
+                      child: _HotSpot(columnWidth, widget.isSelected,
+                          InfoMarkerPosition.right))),
             ),
           SizedBox(
             width: columnWidth,
@@ -45,7 +48,8 @@ class _InfoRowWidgetState extends State<InfoRowWidget> {
               child: Center(
                 child: GestureDetector(
                     onTap: widget.onTap,
-                    child: _HotSpot(columnWidth, InfoMarkerPosition.left)),
+                    child: _HotSpot(columnWidth, widget.isSelected,
+                        InfoMarkerPosition.left)),
               ),
             ),
           if (position == InfoMarkerPosition.left) SizedBox(width: columnWidth),
@@ -57,8 +61,9 @@ class _InfoRowWidgetState extends State<InfoRowWidget> {
 
 class _HotSpot extends StatefulWidget {
   final double columnWidth;
+  final bool isSelected;
   final InfoMarkerPosition position;
-  const _HotSpot(this.columnWidth, this.position);
+  const _HotSpot(this.columnWidth, this.isSelected, this.position);
 
   @override
   State<_HotSpot> createState() => _HotSpotState();
@@ -102,11 +107,15 @@ class _HotSpotState extends State<_HotSpot> with TickerProviderStateMixin {
             height: 25 + (5 * _tween!.value),
             decoration: BoxDecoration(
                 gradient: RadialGradient(
-                  colors: [Colors.red, Colors.red.shade200.withAlpha(0)],
+                  colors: widget.isSelected
+                      ? [Colors.white, Colors.red]
+                      : [Colors.red, Colors.red.shade200.withAlpha(100)],
                 ),
                 borderRadius: const BorderRadius.all(Radius.circular(360)),
-                border:
-                    Border.all(color: const Color(UiColors.contrastingLight))),
+                border: Border.all(
+                    color: widget.isSelected
+                        ? Colors.red
+                        : const Color(UiColors.contrastingLight))),
           );
         });
   }

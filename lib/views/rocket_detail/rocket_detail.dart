@@ -50,26 +50,14 @@ class RocketDetail extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          InfoRowWidget(
-                              columnWidth: colWidth,
-                              position: InfoMarkerPosition.left,
-                              onTap: () => infoMarkerTapped(1)),
-                          InfoRowWidget(
-                              columnWidth: colWidth,
-                              position: InfoMarkerPosition.right,
-                              onTap: () => infoMarkerTapped(2)),
-                          InfoRowWidget(
-                              columnWidth: colWidth,
-                              position: InfoMarkerPosition.left,
-                              onTap: () => infoMarkerTapped(3)),
-                          InfoRowWidget(
-                              columnWidth: colWidth,
-                              position: InfoMarkerPosition.right,
-                              onTap: () => infoMarkerTapped(4)),
-                          InfoRowWidget(
-                              columnWidth: colWidth,
-                              position: InfoMarkerPosition.left,
-                              onTap: () => infoMarkerTapped(5)),
+                          for (int i = 1; i < 6; i++)
+                            InfoRowWidget(
+                                columnWidth: colWidth,
+                                isSelected: state.infoTab == i,
+                                position: i % 2 == 0
+                                    ? InfoMarkerPosition.left
+                                    : InfoMarkerPosition.right,
+                                onTap: () => infoMarkerTapped(i)),
                         ]),
                   ]),
                 ),

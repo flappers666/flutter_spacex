@@ -72,6 +72,7 @@ class RocketDetailBloc extends Bloc<RocketDetailEvent, RocketDetailState> {
 
   void _updateInfoTab(UpdateInfo event, Emitter<RocketDetailState> emit) {
     emit(state.copyWith(
+        infoTab: event.infoIndex,
         infoHeading: calculateHeaderText(event.infoIndex),
         infoTexts: calculateInfoText(event.infoIndex)));
   }
