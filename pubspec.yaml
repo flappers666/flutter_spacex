@@ -19,6 +19,7 @@ dependencies:
   json_serializable: ^6.5.4
   logging: ^1.1.0
   shimmer: ^2.0.0
+  flutter_native_splash: ^2.2.16
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -32,8 +33,9 @@ flutter:
       fonts:
         - asset: assets/fonts/RobotoCondensed-Regular.ttf
         - asset: assets/fonts/Audiowide-Regular.ttf
-
-  
+flutter_native_splash:
+  color: "#000000"
+  image: assets/images/spacex.png
   
   
   
