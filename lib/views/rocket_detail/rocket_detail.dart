@@ -1,76 +1,118 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spacex/core/models/rockets/rocket_model.dart';
 import 'package:flutter_spacex/views/constants/text_styles.dart';
-import 'package:flutter_spacex/views/rocket_detail/widgets/info_widget.dart';
+import 'package:flutter_spacex/views/constants/ui_colors.dart';
+import 'package:flutter_spacex/views/rocket_detail/bloc/rocket_detail_bloc.dart';
+import 'package:flutter_spacex/views/rocket_detail/bloc/rocket_detail_event.dart';
+import 'package:flutter_spacex/views/rocket_detail/bloc/rocket_detail_state.dart';
+import 'package:flutter_spacex/views/rocket_detail/widgets/info_row_widget.dart';
 import 'package:flutter_spacex/widgets/default_app_bar.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 class RocketDetail extends StatelessWidget {
   final RocketModel rocket;
   const RocketDetail({required this.rocket, super.key});
 
-  List<String> getPayloads() {
-    List<String> payloads = [];
-    for (var payload in rocket.payloadWeights) {
-      payloads.add('${payload.name}:\n${payload.kg}KG');
-    }
-    return payloads;
-  }
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double colWidth = screenWidth * .25;
-    return Scaffold(
-        appBar: DefaultAppBar(
-            title: rocket.name, backFunc: () => GoRouter.of(context).pop()),
-        body: Stack(children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Center(child: Image.asset('assets/images/rocket.png')),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                InfoWidget(
-                    columnWidth: colWidth,
-                    headerText: 'Payloads',
-                    infoTexts: [...getPayloads()],
-                    position: InfoPosition.right),
-                InfoWidget(
-                    columnWidth: colWidth,
-                    headerText: 'Size',
-                    infoTexts: [
-                      'Height:\n${rocket.height.meters}M',
-                      'Diameter:\n${rocket.diameter.meters}M',
-                      'Mass:\n${rocket.mass.kg}KG'
-                    ],
-                    position: InfoPosition.left),
-                InfoWidget(
-                    columnWidth: colWidth,
-                    headerText: 'General',
-                    infoTexts: [
-                      'Cost per launch:\n\$${rocket.costPerLaunch}',
-                      'Success rate:\n${rocket.successRatePct}%',
-                      'First Flight:\n${DateFormat('dd/MM/yyyy').format(rocket.firstFlight)}',
-                    ],
-                    position: InfoPosition.right),
-                InfoWidget(
-                    columnWidth: colWidth,
-                    headerText: 'Engines',
-                    infoTexts: [
-                      'Type: ${rocket.engines.type}',
-                      'Propellant 1:\n${rocket.engines.propellant1}',
-                      'Propellant 2:\n${rocket.engines.propellant2}',
-                    ],
-                    position: InfoPosition.left),
-              ],
-            ),
-          )
-        ]));
+    double screenHeight = MediaQuery.of(context).size.height;
+    double colWidth = screenWidth * .3;
+    double descriptionHeight = screenHeight * .2;
+
+    void infoMarkerTapped(int markerIndex) {
+      context.read<RocketDetailBloc>().add(UpdateInfo(markerIndex));
+    }
+
+    return BlocBuilder<RocketDetailBloc, RocketDetailState>(
+        builder: (context, state) {
+      return Scaffold(
+          appBar: DefaultAppBar(
+              title: rocket.name, backFunc: () => GoRouter.of(context).pop()),
+          body: Container(
+              decoration: const BoxDecoration(
+                gradient: RadialGradient(
+                  center: Alignment(0, -0.5),
+                  radius: 0.8,
+                  colors: <Color>[
+                    Color(UiColors.palette10),
+                    Color(UiColors.contrastingDark),
+                  ],
+                ),
+              ),
+              child: Column(mainAxisSize: MainAxisSize.max, children: [
+                const SizedBox(height: 10),
+                Expanded(
+                  child: Stack(fit: StackFit.expand, children: [
+                    Center(child: Image.asset('assets/images/rocket.png')),
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          InfoRowWidget(
+                              columnWidth: colWidth,
+                              position: InfoMarkerPosition.left,
+                              onTap: () => infoMarkerTapped(1)),
+                          InfoRowWidget(
+                              columnWidth: colWidth,
+                              position: InfoMarkerPosition.right,
+                              onTap: () => infoMarkerTapped(2)),
+                          InfoRowWidget(
+                              columnWidth: colWidth,
+                              position: InfoMarkerPosition.left,
+                              onTap: () => infoMarkerTapped(3)),
+                          InfoRowWidget(
+                              columnWidth: colWidth,
+                              position: InfoMarkerPosition.right,
+                              onTap: () => infoMarkerTapped(4)),
+                          InfoRowWidget(
+                              columnWidth: colWidth,
+                              position: InfoMarkerPosition.left,
+                              onTap: () => infoMarkerTapped(5)),
+                        ]),
+                  ]),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: const Color(UiColors.background),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(
+                            color: const Color(UiColors.contrastingLight))),
+                    height: descriptionHeight,
+                    child: Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            state.infoHeading,
+                            style: TextStyles.heading(fontSize: 16),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          for (var t in state.infoTexts)
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    t,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyles.body(fontSize: 14),
+                                  ),
+                                )
+                              ],
+                            )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ])));
+    });
   }
 }

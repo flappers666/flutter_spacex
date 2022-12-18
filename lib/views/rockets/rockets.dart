@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spacex/core/models/rockets/rocket_model.dart';
 import 'package:flutter_spacex/views/constants/app_routes.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
+import 'package:flutter_spacex/views/rocket_detail/bloc/rocket_detail_bloc.dart';
+import 'package:flutter_spacex/views/rocket_detail/bloc/rocket_detail_event.dart';
+import 'package:flutter_spacex/views/rocket_detail/rocket_detail.dart';
 import 'package:flutter_spacex/views/rockets/bloc/rockets_bloc.dart';
 import 'package:flutter_spacex/views/rockets/bloc/rockets_events.dart';
 import 'package:flutter_spacex/views/rockets/bloc/rockets_state.dart';
@@ -19,6 +22,9 @@ class Rockets extends StatelessWidget {
       if (state.viewState == RocketsViewState.notLoaded) {
         context.read<RocketsBloc>().add(GetRockets());
       }
+
+      var rocketDetailBloc = BlocProvider.of<RocketDetailBloc>(context);
+
       return Scaffold(
           appBar: const DefaultAppBar(title: 'Rockets'),
           backgroundColor: const Color(UiColors.palette5),
@@ -35,6 +41,7 @@ class Rockets extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   if (rocket != null) {
+                    rocketDetailBloc..add(UpdateRocket(rocket));
                     context.go('${AppRoutes.rockets}/${AppRoutes.rocketDetail}',
                         extra: rocket);
                   }

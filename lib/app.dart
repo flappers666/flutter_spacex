@@ -11,6 +11,7 @@ import 'package:flutter_spacex/core/utilities/logger.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/core/router.dart';
 import 'package:flutter_spacex/views/launches/bloc/launches_bloc.dart';
+import 'package:flutter_spacex/views/rocket_detail/bloc/rocket_detail_bloc.dart';
 import 'package:flutter_spacex/views/rockets/bloc/rockets_bloc.dart';
 
 class App extends StatelessWidget {
@@ -75,6 +76,9 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (context) => RocketsBloc(
                 rocketsRepository: context.read<RocketsRepository>()),
+          ),
+          BlocProvider(
+            create: (context) => RocketDetailBloc(),
           ),
         ],
         child: MaterialApp.router(
