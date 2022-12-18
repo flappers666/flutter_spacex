@@ -103,8 +103,8 @@ class _HotSpotState extends State<_HotSpot> with TickerProviderStateMixin {
             margin: position == InfoMarkerPosition.right
                 ? EdgeInsets.only(left: columnWidth * .75)
                 : EdgeInsets.only(right: columnWidth * .75),
-            width: 25 + (5 * _tween!.value),
-            height: 25 + (5 * _tween!.value),
+            width: widget.isSelected ? 20 : 25 + (5 * _tween!.value),
+            height: widget.isSelected ? 20 : 25 + (5 * _tween!.value),
             decoration: BoxDecoration(
                 gradient: RadialGradient(
                   colors: widget.isSelected
