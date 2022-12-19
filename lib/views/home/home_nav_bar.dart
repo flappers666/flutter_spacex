@@ -21,6 +21,8 @@ class HomeNavBar extends StatelessWidget {
       index = 0;
     } else if (location.startsWith(AppRoutes.rockets)) {
       index = 1;
+    } else if (location.startsWith(AppRoutes.info)) {
+      index = 2;
     }
     return index;
   }
@@ -36,6 +38,9 @@ class HomeNavBar extends StatelessWidget {
         break;
       case 1:
         context.go(AppRoutes.rockets);
+        break;
+      case 2:
+        context.go(AppRoutes.info);
         break;
     }
   }

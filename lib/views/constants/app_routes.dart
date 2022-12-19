@@ -6,4 +6,5 @@ class AppRoutes {
   static const launchDetail = 'launchDetail';
   static const rockets = '/rockets';
   static const rocketDetail = 'rocketDetail';
+  static const info = '/info';
 }

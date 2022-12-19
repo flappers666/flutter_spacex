@@ -3,6 +3,7 @@ import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 import 'package:flutter_spacex/core/models/rockets/rocket_model.dart';
 import 'package:flutter_spacex/views/constants/app_routes.dart';
 import 'package:flutter_spacex/views/home/home_nav_bar.dart';
+import 'package:flutter_spacex/views/info/info.dart';
 import 'package:flutter_spacex/views/launch_detail/launch_detail.dart';
 import 'package:flutter_spacex/views/launches/launches.dart';
 import 'package:flutter_spacex/views/rocket_detail/rocket_detail.dart';
@@ -43,5 +44,10 @@ final router = GoRouter(
                         RocketDetail(rocket: state.extra as RocketModel)),
               ],
             ),
+            GoRoute(
+              path: AppRoutes.info,
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: Info()),
+            )
           ]),
     ]);

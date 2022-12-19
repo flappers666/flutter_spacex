@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class UiColors {
   const UiColors._();
 
@@ -18,4 +20,14 @@ class UiColors {
   static const contrastingLight = 0xFFFFFFFF;
   static const contrastingDark = 0xFF000E14;
   static const contrastingMid = 0xFF4b4d47;
+
+  static const defaultRadialGradient = BoxDecoration(
+      gradient: RadialGradient(
+    center: Alignment(0, -0.5),
+    radius: 0.8,
+    colors: <Color>[
+      Color(UiColors.palette10),
+      Color(UiColors.contrastingDark),
+    ],
+  ));
 }

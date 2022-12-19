@@ -31,16 +31,7 @@ class RocketDetail extends StatelessWidget {
           appBar: DefaultAppBar(
               title: rocket.name, backFunc: () => GoRouter.of(context).pop()),
           body: Container(
-              decoration: const BoxDecoration(
-                gradient: RadialGradient(
-                  center: Alignment(0, -0.5),
-                  radius: 0.8,
-                  colors: <Color>[
-                    Color(UiColors.palette10),
-                    Color(UiColors.contrastingDark),
-                  ],
-                ),
-              ),
+              decoration: UiColors.defaultRadialGradient,
               child: Column(mainAxisSize: MainAxisSize.max, children: [
                 const SizedBox(height: 10),
                 Expanded(
