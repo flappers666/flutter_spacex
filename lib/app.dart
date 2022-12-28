@@ -5,8 +5,6 @@ import 'package:flutter_spacex/core/api/launches_api.dart';
 import 'package:flutter_spacex/core/api/rockets_api.dart';
 import 'package:flutter_spacex/core/repositories/launches_repository.dart';
 import 'package:flutter_spacex/core/repositories/rockets_repository.dart';
-import 'package:flutter_spacex/core/services/launches_service.dart';
-import 'package:flutter_spacex/core/services/rockets_service.dart';
 import 'package:flutter_spacex/core/utilities/logger.dart';
 import 'package:flutter_spacex/views/constants/ui_colors.dart';
 import 'package:flutter_spacex/views/core/router.dart';
@@ -15,19 +13,11 @@ import 'package:flutter_spacex/views/rocket_detail/bloc/rocket_detail_bloc.dart'
 import 'package:flutter_spacex/views/rockets/bloc/rockets_bloc.dart';
 
 class App extends StatelessWidget {
+  late final Logger<App> _logger;
+  late final Dio dio;
+
   App({Key? key}) : super(key: key) {
-    _initialise();
-  }
-
-  Logger<App>? _logger;
-  LaunchesApi? _launchesApi;
-  LaunchesService? _launchesService;
-  RocketsApi? _rocketsApi;
-  RocketsService? _rocketsService;
-
-  void _initialise() {
     _logger = Logger<App>(this);
-
     BaseOptions dioBaseOptions = BaseOptions(
       connectTimeout: 5000,
       receiveTimeout: 5000,
@@ -36,24 +26,18 @@ class App extends StatelessWidget {
           status != null && status >= 200 && status <= 299,
     );
 
-    final Dio dio = Dio(dioBaseOptions);
+    dio = Dio(dioBaseOptions);
 
     dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
-      _logger!.verbose(options.toString());
+      _logger.verbose(options.toString());
       return handler.next(options);
     }, onResponse: (response, handler) {
-      _logger!.verbose(response.toString());
+      _logger.verbose(response.toString());
       return handler.next(response);
     }, onError: (DioError e, handler) {
-      _logger!.verbose(e.toString());
+      _logger.verbose(e.toString());
       return handler.next(e);
     }));
-
-    _launchesApi = LaunchesApi(dio);
-    _launchesService = LaunchesService(_launchesApi!);
-
-    _rocketsApi = RocketsApi(dio);
-    _rocketsService = RocketsService(_rocketsApi!);
   }
 
   @override
@@ -61,11 +45,9 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<LaunchesRepository>(
-            create: (context) =>
-                LaunchesRepository(launchesService: _launchesService!)),
+            create: (context) => HttpLaunchesRepository(LaunchesApi(dio))),
         RepositoryProvider<RocketsRepository>(
-            create: (context) =>
-                RocketsRepository(rocketsService: _rocketsService!)),
+            create: (context) => HttpRocketsRepository(RocketsApi(dio)))
       ],
       child: MultiBlocProvider(
         providers: [

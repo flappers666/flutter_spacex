@@ -10,7 +10,7 @@ import 'package:flutter_spacex/core/models/rockets/rocket_model.dart';
 class RocketsApi extends ApiClient {
   RocketsApi(Dio httpClient) : super(httpClient);
 
-  Future<ApiResponse> getRockets() async {
+  Future<ApiResponse> rockets() async {
     try {
       var request = ApiRequest(
           host: ApiConstants.spacexUrl,

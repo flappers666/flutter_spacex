@@ -5,10 +5,10 @@ import 'package:flutter_spacex/core/api/api_request.dart';
 enum HttpMethod { get, post, patch, put, delete }
 
 abstract class ApiClient {
-  final Dio _httpClient;
+  final Dio httpClient;
   final String _scheme = 'https';
 
-  ApiClient(this._httpClient);
+  ApiClient(this.httpClient);
 
   String _prepareUrl(
       {required String host,
@@ -28,7 +28,7 @@ abstract class ApiClient {
       Map<String, dynamic>? queryParams}) async {
     var url = _prepareUrl(host: host, path: path, queryParams: queryParams);
     try {
-      return await _httpClient.get(url);
+      return await httpClient.get(url);
     } on DioError catch (e) {
       throw ApiError(e.error.toString());
     }

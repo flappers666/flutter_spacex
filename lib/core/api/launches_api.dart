@@ -10,7 +10,7 @@ import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 class LaunchesApi extends ApiClient {
   LaunchesApi(Dio httpClient) : super(httpClient);
 
-  Future<ApiResponse> getUpcomingLaunches() async {
+  Future<ApiResponse> launches() async {
     try {
       var request = ApiRequest(
           host: ApiConstants.spacexUrl,
@@ -26,7 +26,7 @@ class LaunchesApi extends ApiClient {
     }
   }
 
-  Future<ApiResponse> getLaunchDetail(String launchId) async {
+  Future<ApiResponse> launch(String launchId) async {
     try {
       var request = ApiRequest(
           host: ApiConstants.spacexUrl,

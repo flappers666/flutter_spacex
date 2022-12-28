@@ -1,14 +1,25 @@
+import 'package:flutter_spacex/core/api/api_response.dart';
+import 'package:flutter_spacex/core/api/rockets_api.dart';
 import 'package:flutter_spacex/core/dto/value_or_fail.dart';
-import 'package:flutter_spacex/core/models/launches/launch_model.dart';
 import 'package:flutter_spacex/core/models/rockets/rocket_model.dart';
-import 'package:flutter_spacex/core/services/launches_service.dart';
-import 'package:flutter_spacex/core/services/rockets_service.dart';
 
-class RocketsRepository {
-  final RocketsService rocketsService;
-  RocketsRepository({required this.rocketsService});
+abstract class RocketsRepository {
+  Future<ValueOrFail<List<RocketModel>?>> getRockets();
+}
 
+class HttpRocketsRepository implements RocketsRepository {
+  final RocketsApi rocketsApi;
+  HttpRocketsRepository(this.rocketsApi);
+
+  @override
   Future<ValueOrFail<List<RocketModel>?>> getRockets() async {
-    return await rocketsService.getRockets();
+    ApiResponse apiResponse = await rocketsApi.rockets();
+    ValueOrFail<List<RocketModel>?> response =
+        ValueOrFail(value: null, errorMessage: null);
+    if (apiResponse.success) {
+      response.value = apiResponse.value;
+    }
+    response.errorMessage = apiResponse.apiError?.errorMessage;
+    return response;
   }
 }
